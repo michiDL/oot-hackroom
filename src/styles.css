@@ -1,0 +1,115 @@
+:root {
+  font-family: Consolas, "Cascadia Code", monospace;
+  color: #dce5ff;
+  background: #02030a;
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; background: #02030a; }
+.app { min-height: 100vh; overflow: hidden; position: relative; }
+.scanlines {
+  position: fixed; inset: 0; pointer-events: none; z-index: 20; opacity: .05;
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent 3px, #fff 4px);
+}
+.hero {
+  min-height: 670px; position: relative; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 35px 20px 70px;
+  border-bottom: 1px solid #101936;
+  background:
+    radial-gradient(circle at 50% 42%, #07184c 0, rgba(2,3,10,0) 42%),
+    linear-gradient(rgba(20,50,130,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20,50,130,.04) 1px, transparent 1px);
+  background-size: auto, 64px 64px, 64px 64px;
+}
+.topbar {
+  position: absolute; top: 28px; left: 28px; right: 28px;
+  color: #53638e; font-size: 10px; letter-spacing: .18em;
+}
+.topbar-right { float: right; }
+.live-dot {
+  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  margin-right: 9px; background: #315eff; box-shadow: 0 0 13px #315eff;
+}
+.logo-container { width: min(850px, 100%); height: 400px; }
+.electric-logo {
+  height: 100%; position: relative; display: grid; place-items: center;
+  isolation: isolate;
+}
+.electric-logo img {
+  width: min(650px, calc(100% - 50px)); position: relative; z-index: 5;
+  transform: scale(var(--logo-scale)); filter:
+    drop-shadow(0 0 8px var(--electric-color))
+    drop-shadow(0 0 25px var(--electric-glow));
+  animation: logoPulse 2.4s ease-in-out infinite;
+}
+.electric-ring {
+  position: absolute; border: 1px solid var(--electric-color); border-radius: 48%;
+  opacity: .45; filter: drop-shadow(0 0 9px var(--electric-glow));
+}
+.ring-one { width: 70%; height: 55%; transform: rotate(-7deg); animation: ring 2s linear infinite; }
+.ring-two { width: 78%; height: 60%; transform: rotate(11deg); animation: ring 2.7s linear reverse infinite; }
+.ring-three { width: 63%; height: 72%; transform: rotate(31deg); animation: ring 3.1s linear infinite; opacity: .2; }
+.electric-arcs {
+  position: absolute; inset: 20%; z-index: 2; border-radius: 50%;
+  box-shadow: 0 0 45px 5px rgba(0,36,255,.35), inset 0 0 45px rgba(0,36,255,.15);
+  animation: flicker 1.2s steps(2) infinite;
+}
+.ascii-container { width: min(850px, 100%); height: 100px; margin-top: -65px; z-index: 6; }
+.ascii-text { position: relative; width: 100%; height: 100%; overflow: hidden; display: grid; place-items: center; }
+.ascii-background { position: absolute; inset: 0; color: #315eff; opacity: .2; font-size: 9px; line-height: 9px; overflow: hidden; }
+.ascii-row { white-space: nowrap; }
+.ascii-row span { display: inline-block; width: 9px; }
+.ascii-title {
+  position: relative; color: #b9c8ff; font-size: clamp(25px, 5vw, 48px);
+  font-weight: 800; letter-spacing: .06em; text-shadow: 0 0 12px #0024ff, 0 0 35px #000afb;
+}
+.subtitle { margin-top: 20px; font-size: 11px; color: #7081b0; letter-spacing: .3em; }
+.subtitle b { color: #315eff; margin: 0 10px; }
+.content { width: min(1050px, calc(100% - 36px)); margin: auto; padding: 75px 0 25px; }
+.tag { color: #4165ff; font-size: 10px; font-weight: bold; letter-spacing: .18em; margin-bottom: 14px; }
+.card { border: 1px solid #121e45; background: linear-gradient(145deg, #080d1d, #040611); box-shadow: 0 25px 70px rgba(0,0,0,.25); }
+.progress-card { padding: 34px; margin-bottom: 18px; }
+.status-head { display: flex; justify-content: space-between; gap: 20px; }
+.label, .meta span { color: #53638e; font-size: 9px; letter-spacing: .18em; }
+h1 { margin: 9px 0 0; font-size: clamp(22px, 4vw, 36px); color: #eef2ff; }
+h2 { font-size: 19px; margin: 0 0 18px; }
+.badge {
+  align-self: flex-start; border: 1px solid #1b367f; padding: 9px 12px;
+  color: #7190ff; font-size: 9px; letter-spacing: .12em;
+}
+.badge i { display: inline-block; width: 6px; height: 6px; background: #315eff; box-shadow: 0 0 9px #315eff; margin-right: 8px; }
+.progress-info { display: flex; justify-content: space-between; margin-top: 48px; margin-bottom: 12px; color: #65749d; font-size: 9px; letter-spacing: .14em; }
+.progress-info strong { color: #eef2ff; font-size: 17px; letter-spacing: 0; }
+.progress-track { height: 14px; padding: 2px; border: 1px solid #1a2c67; background: #02040b; }
+.progress-fill { height: 100%; min-width: 2px; background: linear-gradient(90deg, #071a9c, #174cff, #7290ff); box-shadow: 0 0 18px rgba(30,80,255,.6); transition: width .5s ease; }
+.scale { display: flex; justify-content: space-between; color: #394566; margin-top: 8px; font-size: 8px; }
+.meta { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; border-top: 1px solid #101a38; margin-top: 32px; padding-top: 22px; }
+.meta b { display: block; color: #abb9df; font-size: 11px; margin-top: 8px; font-weight: 500; }
+.columns { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.panel { padding: 30px; }
+.panel p { color: #7582a6; font-size: 12px; line-height: 1.9; }
+.panel ol { padding: 0; margin: 0; list-style: none; }
+.panel li { display: flex; gap: 15px; color: #8793b5; font-size: 11px; line-height: 1.6; padding: 12px 0; border-bottom: 1px solid #0d1530; }
+.panel li em { color: #315eff; font-style: normal; }
+.log { margin-top: 18px; }
+.log p { margin: 0; padding: 9px 0; border-bottom: 1px dashed #101a35; font-size: 11px; }
+.log b { color: #315eff; margin-right: 12px; }
+.credits { margin-top: 70px; }
+.credit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.credit { border: 1px solid #121e45; padding: 20px; display: flex; justify-content: space-between; gap: 20px; background: #060916; }
+.credit b { color: #e0e7ff; font-size: 13px; }
+.credit span { color: #596789; font-size: 9px; }
+footer { display: flex; justify-content: space-between; padding: 30px 0; margin-top: 50px; border-top: 1px solid #0f1731; color: #303b5b; font-size: 8px; letter-spacing: .15em; }
+@keyframes logoPulse { 50% { filter: drop-shadow(0 0 14px var(--electric-color)) drop-shadow(0 0 42px var(--electric-glow)); } }
+@keyframes ring { to { transform: rotate(371deg) scale(1.02); } }
+@keyframes flicker { 50% { opacity: .55; } 52% { opacity: .2; } 54% { opacity: .75; } }
+@media (max-width: 700px) {
+  .hero { min-height: 590px; }
+  .topbar { font-size: 8px; left: 15px; right: 15px; }
+  .topbar-right { display: none; }
+  .logo-container { height: 330px; }
+  .ascii-container { margin-top: -45px; }
+  .columns, .credit-grid, .meta { grid-template-columns: 1fr; }
+  .status-head { flex-direction: column; }
+  .badge { align-self: flex-start; }
+  footer { flex-direction: column; gap: 12px; }
+}
