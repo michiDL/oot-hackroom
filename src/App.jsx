@@ -2,13 +2,33 @@ import React from "react";
 import { project } from "./projectData.js";
 import ASCIIText from "./components/ASCIIText.jsx";
 import ElectricLogo from "./components/ElectricLogo.jsx";
+import LineWaves from "./components/LineWaves.jsx";
 
 export default function App() {
   const progress = Math.max(0, Math.min(100, Number(project.progress) || 0));
 
   return (
-    <div className="app">
-      <div className="scanlines" />
+   <div className="app">
+  <div className="line-waves-background">
+    <LineWaves
+      speed={0.3}
+      innerLineCount={32}
+      outerLineCount={36}
+      warpIntensity={0.9}
+      rotation={-91}
+      edgeFadeWidth={0}
+      colorCycleSpeed={1}
+      brightness={0.3}
+      color1="#009aff"
+      color2="#d60000"
+      color3="#0800ff"
+      enableMouseInteraction={true}
+      mouseInfluence={2}
+    />
+  </div>
+
+  <div className="scanlines" />
+      
 
       <header className="hero">
         <div className="topbar">
