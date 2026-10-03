@@ -1,9 +1,9 @@
 // ===== EDITA ESTA PARTE PARA ACTUALIZAR EL PROYECTO =====
 export const project = {
-  progress: 5,
-  phase: "Fase 1 — compilando",
+  progress: 10,
+  phase: "Fase 2 — ??",
   status: "EN DESARROLLO",
-  lastUpdate: "26 / 09 / 2026",
+  lastUpdate: "03 / 10 / 2026",
 
   description:
     "Esta página muestra el avanze de la hackrom de ocarina of time u.u",
@@ -12,11 +12,12 @@ export const project = {
     ":3",
 
   objectives: [
-    "lograr que el juego base se ejecute",
+    "añadir cosas nuevas",
   ],
 
   credits: [
     ["Michixdl", "Desarrollo / Hackroom"],
+    ["goonerbro0232_31558", " algunas texturas c:"],
     ["Bluesky", "Créditos / Referencia"]
   ]
 };
