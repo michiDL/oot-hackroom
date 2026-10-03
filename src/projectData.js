@@ -13,11 +13,14 @@ export const project = {
 
   objectives: [
     "añadir cosas nuevas",
+    "añadir canciones",
+    "añadir jefes",
+    "añadir mecanicas",
   ],
 
   credits: [
     ["Michixdl", "Desarrollo / Hackroom"],
     ["goonerbro0232_31558", " algunas texturas c:"],
-    ["Bluesky", "Créditos / Referencia"]
+    ["Bluesky", "modelado 3d / modelos de enemigos"]
   ]
 };
