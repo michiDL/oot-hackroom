@@ -7,28 +7,28 @@ import LineWaves from "./components/LineWaves.jsx";
 export default function App() {
   const progress = Math.max(0, Math.min(100, Number(project.progress) || 0));
 
-  return (
-   <div className="app">
-  <div className="line-waves-background">
-    <LineWaves
-      speed={0.3}
-      innerLineCount={32}
-      outerLineCount={36}
-      warpIntensity={0.9}
-      rotation={-91}
-      edgeFadeWidth={0}
-      colorCycleSpeed={1}
-      brightness={0.3}
-      color1="#009aff"
-      color2="#d60000"
-      color3="#0800ff"
-      enableMouseInteraction={true}
-      mouseInfluence={2}
-    />
-  </div>
+   return (
+    <div className="app">
 
-  <div className="scanlines" />
-      
+      <div className="line-waves-background">
+        <LineWaves
+          speed={0.3}
+          innerLineCount={32}
+          outerLineCount={36}
+          warpIntensity={0.9}
+          rotation={-91}
+          edgeFadeWidth={0}
+          colorCycleSpeed={1}
+          brightness={0.3}
+          color1="#009aff"
+          color2="#d60000"
+          color3="#0800ff"
+          enableMouseInteraction={true}
+          mouseInfluence={2}
+        />
+      </div>
+
+      <div className="scanlines" />
 
       <header className="hero">
         <div className="topbar">
@@ -65,7 +65,9 @@ export default function App() {
           />
         </div>
 
-        <div className="subtitle">OCARINA OF TIME <b>//</b> HACKROOM</div>
+        <div className="subtitle">
+          OCARINA OF TIME <b>//</b> HACKROOM
+        </div>
       </header>
 
       <main className="content">
@@ -140,7 +142,7 @@ export default function App() {
           <span>OOT HACKROOM</span>
           <span>PRIVATE DEV PAGE</span>
           <span>© {new Date().getFullYear()} MICHIXDL</span>
-        </footer>
+          </footer>
       </main>
     </div>
   );
