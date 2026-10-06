@@ -10,8 +10,8 @@ import {
 export default function ShaderBackground({
   image = "/background.jpg",
   speed = 0.35,
-  frequency = 8.0,
-  waveAmplitude = 0.025,
+  frequency = 1,
+  waveAmplitude = 0.015,
 }) {
   const containerRef = useRef(null);
 
@@ -108,44 +108,22 @@ export default function ShaderBackground({
 
       vec2 sineWave(vec2 pt)
       {
-        float x = 0.0;
-        float y = 0.0;
-
-        float safeX =
-          max(pt.x, 0.001);
-
-        float safeY =
-          max(pt.y, 0.001);
-
         float offsetX =
           sin(
             pt.y * uFrequency +
             uTime * uSpeed
-          ) *
-          (
-            uWaveAmplitude /
-            safeX *
-            pt.y
-          );
+          ) * uWaveAmplitude;
 
         float offsetY =
           sin(
             pt.x * uFrequency -
             uTime * uSpeed
-          ) *
-          (
-            uWaveAmplitude /
-            safeY *
-            pt.x
-          );
+          ) * uWaveAmplitude;
 
         pt.x += offsetX;
         pt.y += offsetY;
 
-        return vec2(
-          pt.x + x,
-          pt.y + y
-        );
+        return pt;
       }
 
       // ========================================

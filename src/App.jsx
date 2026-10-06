@@ -1,5 +1,4 @@
 import React from "react";
-
 import { project } from "./projectData.js";
 
 import ASCIIText from "./components/ASCIIText.jsx";
@@ -16,12 +15,22 @@ export default function App() {
     )
   );
 
+  const gallery =
+    Array.isArray(project.gallery)
+      ? project.gallery
+      : [];
+
+  const notes =
+    Array.isArray(project.notes)
+      ? project.notes
+      : [];
+
   return (
     <div className="app">
 
-      {/* ========================================
-          SHADER BACKGROUND
-      ======================================== */}
+      {/* =========================
+          BACKGROUND
+      ========================= */}
 
       <ShaderBackground
         image="/background.jpg"
@@ -31,18 +40,19 @@ export default function App() {
       />
 
       <div className="background-vignette" />
-
       <div className="scanlines" />
 
-      {/* ========================================
-          CONTENT
-      ======================================== */}
+
+      {/* =========================
+          MAIN CONTENT
+      ========================= */}
 
       <main className="content">
 
-        {/* ======================================
+
+        {/* =========================
             HERO
-        ====================================== */}
+        ========================= */}
 
         <section className="hero">
 
@@ -50,37 +60,24 @@ export default function App() {
 
             <ElectricLogo
               src="/logo.png"
-
               color="#0024ff"
-
               glowColor="#000afb"
-
               scale={0.6}
-
               strands={1}
-
               bend={0.4}
-
               crackle={1.5}
-
               arcs={1.8}
-
               speed={2.5}
-
               interactive
-
               glow={0.35}
-
               flicker={1}
-
               fill={1}
-
               cursorIntensity={0.55}
-
               cursorRadius={155}
             />
 
           </div>
+
 
           <div className="ascii-container">
 
@@ -92,21 +89,17 @@ export default function App() {
 
           </div>
 
+
           <div className="hero-subtitle">
 
-            <span>
-              OCARINA OF TIME
-            </span>
+            <span>OCARINA OF TIME</span>
 
-            <b>
-              //
-            </b>
+            <b>//</b>
 
-            <span>
-              HACKROOM
-            </span>
+            <span>HACKROOM</span>
 
           </div>
+
 
           <p className="hero-description">
             PRIVATE DEVELOPMENT PROJECT
@@ -114,31 +107,30 @@ export default function App() {
 
         </section>
 
-        {/* ======================================
-            STATUS
-        ====================================== */}
+
+
+        {/* =========================
+            PROJECT STATUS
+        ========================= */}
 
         <section className="status-section">
 
           <GlassSurface
-            width="100%"
-            height="100%"
-            borderRadius={28}
-            borderWidth={0.08}
             brightness={50}
             opacity={0.75}
             blur={8}
             displace={0}
             backgroundOpacity={0.01}
             saturation={1.15}
-            distortionScale={-200}
+            distortionScale={-25}
             redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
+            greenOffset={3}
+            blueOffset={6}
             className="status-card"
           >
 
             <div className="status-card-inner">
+
 
               <div className="section-heading">
 
@@ -154,6 +146,7 @@ export default function App() {
 
                 </div>
 
+
                 <div className="status-pill">
 
                   <span />
@@ -163,6 +156,8 @@ export default function App() {
                 </div>
 
               </div>
+
+
 
               <div className="progress-header">
 
@@ -176,41 +171,32 @@ export default function App() {
 
               </div>
 
+
+
               <div className="progress-track">
 
                 <div
                   className="progress-fill"
                   style={{
-                    width:
-                      `${progress}%`,
+                    width: `${progress}%`
                   }}
                 />
 
               </div>
 
+
+
               <div className="progress-scale">
 
-                <span>
-                  0%
-                </span>
-
-                <span>
-                  25%
-                </span>
-
-                <span>
-                  50%
-                </span>
-
-                <span>
-                  75%
-                </span>
-
-                <span>
-                  100%
-                </span>
+                <span>0%</span>
+                <span>25%</span>
+                <span>50%</span>
+                <span>75%</span>
+                <span>100%</span>
 
               </div>
+
+
 
               <div className="status-meta">
 
@@ -225,6 +211,7 @@ export default function App() {
                   </strong>
 
                 </div>
+
 
                 <div>
 
@@ -246,11 +233,14 @@ export default function App() {
 
         </section>
 
-        {/* ======================================
-            ABOUT / OBJECTIVES
-        ====================================== */}
+
+
+        {/* =========================
+            ABOUT + OBJECTIVES
+        ========================= */}
 
         <section className="glass-grid">
+
 
           {/* ABOUT */}
 
@@ -265,10 +255,10 @@ export default function App() {
             displace={0}
             backgroundOpacity={0.01}
             saturation={1.15}
-            distortionScale={-200}
+            distortionScale={-25}
             redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
+            greenOffset={3}
+            blueOffset={6}
             className="glass-panel"
           >
 
@@ -286,6 +276,7 @@ export default function App() {
                 {project.description}
               </p>
 
+
               <div className="phase-note">
 
                 <span>
@@ -302,6 +293,8 @@ export default function App() {
 
           </GlassSurface>
 
+
+
           {/* OBJECTIVES */}
 
           <GlassSurface
@@ -315,10 +308,10 @@ export default function App() {
             displace={0}
             backgroundOpacity={0.01}
             saturation={1.15}
-            distortionScale={-200}
+            distortionScale={-25}
             redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
+            greenOffset={3}
+            blueOffset={6}
             className="glass-panel"
           >
 
@@ -332,13 +325,11 @@ export default function App() {
                 Objetivos
               </h2>
 
+
               <div className="objectives-list">
 
                 {project.objectives.map(
-                  (
-                    item,
-                    index
-                  ) => (
+                  (item, index) => (
 
                     <div
                       className="objective"
@@ -346,14 +337,10 @@ export default function App() {
                     >
 
                       <div className="objective-number">
-
-                        {String(
-                          index + 1
-                        ).padStart(
+                        {String(index + 1).padStart(
                           2,
                           "0"
                         )}
-
                       </div>
 
                       <span>
@@ -373,9 +360,158 @@ export default function App() {
 
         </section>
 
-        {/* ======================================
+
+
+        {/* =========================
+            MEDIA / GALLERY
+        ========================= */}
+
+        <section className="gallery-section">
+
+          <GlassSurface
+            width="100%"
+            height="100%"
+            borderRadius={26}
+            borderWidth={0.08}
+            brightness={50}
+            opacity={0.72}
+            blur={8}
+            displace={0}
+            backgroundOpacity={0.01}
+            saturation={1.15}
+            distortionScale={-25}
+            redOffset={0}
+            greenOffset={3}
+            blueOffset={6}
+            className="gallery-card"
+          >
+
+            <div className="gallery-inner">
+
+              <span className="eyebrow">
+                // MEDIA
+              </span>
+
+              <h2>
+                Avances
+              </h2>
+
+
+              {gallery.length === 0 ? (
+
+                /* =========================
+                   EMPTY GALLERY
+                ========================= */
+
+                <div className="gallery-empty">
+
+                  <span>
+                    AÚN NO HAY NADA
+                  </span>
+
+                </div>
+
+              ) : (
+
+                /* =========================
+                   GALLERY CONTENT
+                ========================= */
+
+                <div className="gallery-grid">
+
+                  {gallery.map(
+                    (item, index) => {
+
+                      const isVideo =
+                        item.type === "video" ||
+                        /\.(mp4|webm|ogg)$/i.test(
+                          item.src || ""
+                        );
+
+                      return (
+
+                        <div
+                          className="gallery-item"
+                          key={
+                            item.src ||
+                            index
+                          }
+                        >
+
+                          <div className="gallery-media">
+
+                            {isVideo ? (
+
+                              <video
+                                src={item.src}
+                                controls
+                                muted
+                                playsInline
+                                loop
+                              />
+
+                            ) : (
+
+                              <img
+                                src={item.src}
+                                alt={
+                                  item.alt ||
+                                  "Avance de la hackrom"
+                                }
+                              />
+
+                            )}
+
+                          </div>
+
+
+                          {(item.title ||
+                            item.subtitle) && (
+
+                            <div className="gallery-caption">
+
+                              {item.title && (
+
+                                <strong>
+                                  {item.title}
+                                </strong>
+
+                              )}
+
+                              {item.subtitle && (
+
+                                <span>
+                                  {item.subtitle}
+                                </span>
+
+                              )}
+
+                            </div>
+
+                          )}
+
+                        </div>
+
+                      );
+
+                    }
+                  )}
+
+                </div>
+
+              )}
+
+            </div>
+
+          </GlassSurface>
+
+        </section>
+
+
+
+        {/* =========================
             DEVELOPMENT LOG
-        ====================================== */}
+        ========================= */}
 
         <section className="development-section">
 
@@ -390,10 +526,10 @@ export default function App() {
             displace={0}
             backgroundOpacity={0.01}
             saturation={1.15}
-            distortionScale={-190}
+            distortionScale={-25}
             redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
+            greenOffset={3}
+            blueOffset={6}
             className="log-card"
           >
 
@@ -403,27 +539,56 @@ export default function App() {
                 // DEVELOPMENT LOG
               </span>
 
-              <p>
-                <b>
-                  [SYSTEM]
-                </b>{" "}
-                Hackroom initialized.
-              </p>
 
-              <p>
-                <b>
-                  [STATUS]
-                </b>{" "}
-                {project.phase} —{" "}
-                {progress}% complete.
-              </p>
+              {notes.length > 0 ? (
 
-              <p>
-                <b>
-                  [ACCESS]
-                </b>{" "}
-                Private development build.
-              </p>
+                <div className="notes-list">
+
+                  {notes.map(
+                    (note, index) => (
+
+                      <div
+                        className="note"
+                        key={
+                          `${note.date}-${index}`
+                        }
+                      >
+
+                        <div className="note-date">
+                          {note.date}
+                        </div>
+
+                        <div className="note-content">
+
+                          {note.title && (
+
+                            <strong>
+                              {note.title}
+                            </strong>
+
+                          )}
+
+                          <p>
+                            {note.text}
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                    )
+                  )}
+
+                </div>
+
+              ) : (
+
+                <p>
+                  <b>[SYSTEM]</b>{" "}
+                  Aún no hay notas.
+                </p>
+
+              )}
 
             </div>
 
@@ -431,9 +596,11 @@ export default function App() {
 
         </section>
 
-        {/* ======================================
+
+
+        {/* =========================
             CREDITS
-        ====================================== */}
+        ========================= */}
 
         <section className="credits-section">
 
@@ -441,44 +608,28 @@ export default function App() {
             // CREDITS
           </span>
 
+
           <div className="credit-grid">
 
             {project.credits.map(
-              (
-                [name, role],
-                index
-              ) => (
+              ([name, role], index) => (
 
                 <GlassSurface
                   key={name}
-
                   width="100%"
                   height="100%"
-
                   borderRadius={22}
-
                   borderWidth={0.08}
-
                   brightness={50}
-
                   opacity={0.72}
-
                   blur={8}
-
                   displace={0}
-
                   backgroundOpacity={0.01}
-
                   saturation={1.15}
-
-                  distortionScale={-180}
-
+                  distortionScale={-25}
                   redOffset={0}
-
-                  greenOffset={10}
-
-                  blueOffset={20}
-
+                  greenOffset={3}
+                  blueOffset={6}
                   className="credit-card"
                 >
 
@@ -486,14 +637,13 @@ export default function App() {
 
                     <span className="credit-index">
 
-                      {String(
-                        index + 1
-                      ).padStart(
+                      {String(index + 1).padStart(
                         2,
                         "0"
                       )}
 
                     </span>
+
 
                     <div className="credit-info">
 
@@ -518,9 +668,11 @@ export default function App() {
 
         </section>
 
-        {/* ======================================
+
+
+        {/* =========================
             FOOTER
-        ====================================== */}
+        ========================= */}
 
         <footer className="site-footer">
 
@@ -533,9 +685,7 @@ export default function App() {
           </span>
 
           <span>
-            ©{" "}
-            {new Date().getFullYear()}{" "}
-            MICHIXDL
+            © {new Date().getFullYear()} MICHIXDL
           </span>
 
         </footer>

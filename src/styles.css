@@ -618,49 +618,6 @@ h2 {
   font-weight: 500;
 }
 
-.objectives-panel {
-  padding-bottom: 20px;
-}
-
-.objectives-list {
-  display: flex;
-  flex-direction: column;
-  margin-top: 22px;
-}
-
-.objective {
-  display: grid;
-  grid-template-columns: 28px 30px 1fr;
-  align-items: center;
-  gap: 10px;
-  min-height: 50px;
-  border-bottom: 1px solid rgba(90, 115, 175, 0.08);
-  color: rgba(175, 190, 220, 0.7);
-  font-size: 10px;
-}
-
-.objective:first-child {
-  border-top: 1px solid rgba(90, 115, 175, 0.08);
-}
-
-.objective-number {
-  color: rgba(80, 120, 255, 0.72);
-  font-size: 8px;
-}
-
-.objective-icon {
-  display: grid;
-  place-items: center;
-  width: 25px;
-  height: 25px;
-  color: rgba(92, 137, 255, 0.75);
-}
-
-.objective-icon svg {
-  width: 16px;
-  height: 16px;
-}
-
 /* =========================================================
    DEVELOPMENT LOG
    ========================================================= */
@@ -1629,64 +1586,71 @@ body {
 
 .objectives-list {
   display: flex;
-
   flex-direction: column;
-
   gap: 10px;
+  margin-top: 22px;
 }
 
 .objective {
+  position: relative;
   display: flex;
-
   align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
 
-  gap: 15px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.045);
 
-  padding: 12px;
+  backdrop-filter: blur(6px) saturate(1.2);
+  -webkit-backdrop-filter: blur(6px) saturate(1.2);
 
-  border:
-    1px solid
-    rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+    0 8px 20px rgba(0, 0, 0, 0.16);
 
-  border-radius: 12px;
-
-  background:
-    rgba(255, 255, 255, 0.025);
+  color: rgba(220, 230, 255, 0.85);
+  font-size: 12px;
 
   transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .objective:hover {
-  background:
-    rgba(0, 90, 255, 0.1);
-
-  transform:
-    translateX(4px);
+  background: rgba(0, 90, 255, 0.14);
+  border-color: rgba(120, 160, 255, 0.28);
+  transform: translateX(4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 10px 26px rgba(0, 40, 160, 0.22);
 }
 
 .objective-number {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   width: 32px;
   height: 32px;
-
   flex-shrink: 0;
 
-  border-radius: 8px;
+  border-radius: 9px;
+  border: 1px solid rgba(110, 160, 255, 0.22);
+  background: rgba(0, 90, 255, 0.18);
 
-  background:
-    rgba(0, 90, 255, 0.15);
-
-  color:
-    rgba(100, 170, 255, 0.9);
-
+  color: rgba(140, 185, 255, 0.95);
   font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .objective {
+    transition: none;
+  }
 }
 
 /* ============================================
@@ -2082,6 +2046,375 @@ body {
 
   .glass-surface__content {
     padding: 0.25rem;
+  }
+
+}
+/* =========================================================
+   WEBGL GLASS
+   ========================================================= */
+
+.status-card,
+.glass-panel,
+.log-card,
+.credit-card {
+  background: transparent !important;
+}
+
+.status-card-inner,
+.panel-inner,
+.log-inner,
+.credit-inner {
+  background: transparent !important;
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================================================
+   WEBGL BACKGROUND
+   ========================================================= */
+
+.shader-background {
+  position: fixed;
+
+  inset: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.shader-background canvas {
+  position: absolute;
+
+  inset: 0;
+
+  display: block;
+
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+/* =========================================================
+   VIGNETTE
+   ========================================================= */
+
+.background-vignette {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at center,
+
+      transparent 20%,
+
+      rgba(
+        0,
+        0,
+        20,
+        0.08
+      ) 70%,
+
+      rgba(
+        0,
+        0,
+        0,
+        0.35
+      ) 100%
+    );
+}
+
+
+/* =========================================================
+   SCANLINES
+   ========================================================= */
+
+.scanlines {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  opacity: 0.035;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+
+      transparent 0px,
+
+      transparent 3px,
+
+      rgba(
+        255,
+        255,
+        255,
+        0.8
+      ) 4px
+    );
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.content {
+  position: relative;
+
+  z-index: 10;
+
+  width: 100%;
+
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   GLASS CARDS
+   ========================================================= */
+
+.glass-surface-webgl {
+  box-sizing: border-box;
+}
+
+.glass-surface-webgl__content {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+  .glass-surface-webgl__content {
+    padding: 0.25rem;
+  }
+
+}
+/* =========================================
+   MEDIA / GALLERY
+========================================= */
+
+.gallery-section {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.gallery-card {
+  min-height: 420px;
+}
+
+.gallery-inner {
+  width: 100%;
+  min-height: 420px;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.gallery-inner h2 {
+  margin: 8px 0 24px;
+}
+
+
+/* =========================================
+   EMPTY GALLERY
+========================================= */
+
+.gallery-empty {
+  width: 100%;
+  min-height: 280px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.gallery-empty span {
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  opacity: 0.45;
+}
+
+
+/* =========================================
+   GALLERY WITH MEDIA
+========================================= */
+
+.gallery-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(220px, 1fr)
+    );
+
+  gap: 18px;
+}
+
+.gallery-item {
+  min-width: 0;
+}
+
+.gallery-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background:
+    rgba(255, 255, 255, 0.03);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.10);
+}
+
+.gallery-media img,
+.gallery-media video {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.gallery-caption {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  padding:
+    10px
+    4px
+    0;
+}
+
+.gallery-caption strong {
+  font-size: 14px;
+}
+
+.gallery-caption span {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+
+/* =========================================
+   DEVELOPMENT NOTES
+========================================= */
+
+.notes-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+
+  margin-top: 20px;
+}
+
+.note {
+  display: flex;
+
+  gap: 20px;
+
+  padding-bottom: 18px;
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+}
+
+.note:last-child {
+  border-bottom: none;
+}
+
+.note-date {
+  flex-shrink: 0;
+
+  font-size: 11px;
+
+  opacity: 0.4;
+
+  letter-spacing: 0.08em;
+}
+
+.note-content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.note-content strong {
+  font-size: 14px;
+}
+
+.note-content p {
+  margin: 0;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  opacity: 0.65;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .gallery-inner {
+    padding: 22px;
+  }
+
+  .gallery-card {
+    min-height: 360px;
+  }
+
+  .gallery-inner {
+    min-height: 360px;
+  }
+
+  .gallery-empty {
+    min-height: 220px;
+  }
+
+  .note {
+    flex-direction: column;
+    gap: 6px;
   }
 
 }
