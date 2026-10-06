@@ -1,9 +1,6 @@
 import React from "react";
-import { project } from "./projectData.js";
-import ASCIIText from "./components/ASCIIText.jsx";
-import ElectricLogo from "./components/ElectricLogo.jsx";
-import LineWaves from "./components/LineWaves.jsx";
-
+import { Renderer, Program, Mesh, Triangle } from "ogl";
+import "./LineWaves.css";
 export default function App() {
   const progress = Math.max(0, Math.min(100, Number(project.progress) || 0));
 
